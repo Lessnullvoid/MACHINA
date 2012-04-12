@@ -8,7 +8,7 @@
 }
 
  void loop() {
-  val = analogRead(photocellPin);
+  val = analogRead(analogoPin);
    Serial.println(val);
    Serial.flush();
    delay(200);
