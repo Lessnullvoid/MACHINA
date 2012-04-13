@@ -1,0 +1,75 @@
+// =====================================================================
+// SuperCollider Workspace
+// =====================================================================
+
+
+
+
+//-------------------------
+//main:
+s=Server.local.boot;
+v=();
+g=();
+z=();
+
+g.noModules=4;
+g.padding=10;
+g.noLists=2;
+g.noButtons=4;
+g.noKnobs=3;
+g.smallKnobSize=1/8;
+
+
+
+v.rootPath = "/home/furenku/chamba/sc3/machinaMixer/src/";
+
+v.samplesPath = "/home/furenku/chamba/sc3/machinaMixer/samples/";
+
+v.samples=List.new;
+(v.samplesPath++"*").pathMatch.do{|samples|
+v.samples.add(samples.basename)};
+
+v.loadFiles = [
+	"model.sc",
+	"synthdefs.sc",
+	"sound.sc",
+	"gui.sc",
+	"funciones.sc"	
+];
+
+
+//if(c.resp]]onders.notNil,{c.responders.do{|r|r.remove}});
+
+v.loadFiles.do{|f|  f.basename.postln; thisProcess.interpreter.executeFile(v.rootPath++f);};
+
+
+//-------------------------
+//main:
+v=();
+g=();
+z=();
+
+g.padding=10;
+g.noLists=2;
+g.noButtons=4;
+g.noKnobs=3;
+g.smallKnobSize=1/8;
+
+
+v.rootPath = "/home/furenku/chamba/sc3/machinaMixer/src/";
+
+v.samplesPath = "/home/furenku/chamba/sc3/machinaMixer/samples/";
+
+
+
+v.loadFiles = [
+	    "synthdefs.sc",
+	    "sound.sc",
+	    "gui.sc"
+];
+
+
+//if(c.resp]]onders.notNil,{c.responders.do{|r|r.remove}});
+
+v.loadFiles.do{|f|  f.basename.postln; thisProcess.interpreter.executeFile(v.rootPath++f);};
+

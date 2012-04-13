@@ -1,0 +1,88 @@
+// =====================================================================
+// SuperCollider Workspace
+// =====================================================================
+
+
+
+//-------------------------
+//main:
+v=();
+
+v.rootPath = "/home/furenku/chamba/sc3/machinaMixer/src/";
+
+v.samplesPath = "/home/furenku/chamba/sc3/machinaMixer/samples/";
+
+
+
+v.loadFiles = [
+"gui.sc"
+];
+
+
+//if(c.resp]]onders.notNil,{c.responders.do{|r|r.remove}});
+
+v.loadFiles.do{|f|  f.basename.postln; thisProcess.interpreter.executeFile(v.rootPath++f);};
+
+
+
+s=Server.local.boot;
+~samplesPath = "/media/d783d9c6-cbb7-4d43-bc56-ba0e20e099ab/home/furenku/chamba/SC3/machinaMixer/samples/";
+
+~samples=(~samplesPath++"*").pathMatch;
+~buffers=List.new;
+
+~samples.do{|path|
+	~buffers.add(Buffer.read(s,path));
+}
+
+~buffers[0].play;
+//-------------------------
+//arduino:
+
+//-------------------------
+//sound:
+
+//-------------------------
+//gui:
+
+w=Window.new;
+
+l = ListView(w,Rect(10,200,180,180));
+l.action={|list|
+	list.value.postln;
+};
+l.items=Array.fill(10,{|i|"test"++i.asString++".mp3"});
+
+l = ListView(w,Rect(210,200,180,180));
+l.action={|list|
+	list.value.postln;
+};
+l.items=Array.fill(10,{|i|"test"++i.asString++".mp3"});
+
+b=Button(w,Rect(10,10,100,100));
+b.states=[["1",Color.white,Color.black],["2",Color.white,Color.red]];
+b.action={|button|
+	button.value.postln;
+};
+
+b=Slider(w,Rect(110,10,170,100));
+b.value=0.5;
+b.action={|slider|slider.value.postln};
+
+b=Knob(w,Rect(10,110,100,100));
+b.value=0.5;
+b.amainction={|slider|slider.value.postln};
+
+
+b=Knob(w,Rect(290,110,100,100));
+b.value=0.5;
+b.action={|slider|slider.value.postln};
+
+
+b=Button(w,Rect(290,10,100,100));
+b.states=[["1",Color.white,Color.black],["2",Color.white,Color.red]];
+b.action={|button|
+	button.value.postln;
+};
+
+w.front;

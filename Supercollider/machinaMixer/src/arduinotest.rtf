@@ -1,0 +1,73 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf320
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue191;\red51\green51\blue191;\red0\green0\blue255;
+\red191\green0\blue0;}
+\deftab720
+\pard\pardeftab720
+
+\f0\fs24 \cf0 \
+k.noSensors=3;\
+k.thresHold=30;\
+k.storedVals=10;\
+k.valArray=Array.fill(k.noSensors,\{\cf2 Array\cf0 .fill(k.storedVals,0)\});\
+k.valCounter=0;\
+\
+k.checkTouch=\{arg e,i;\
+	var touching=true;	\
+	k.valArray[i].size.do\{arg j;\
+		k.valArray[i].size.do\{arg l;\
+			if( (k.valArray[i][j]-k.valArray[i][l]).abs>k.thresHold ) \{\
+				touching=false;\
+			\};\
+			\
+		\};\
+	\};\
+	touching;\
+\};\
+\
+k.a = \cf2 Routine\cf0 \{\
+		\cf3 inf\cf0 .do\{\
+			k.valCounter=(k.valCounter+1)%k.storedVals;\
+			\
+			k.p.iterate;\
+				\
+			k.noSensors.do\{\cf4 arg\cf0  i;\
+				k.valArray[i][k.valCounter]=k.p.analog[i].value;\
+				//k.p.analog[i].value.post; "  ".post;\
+				if(k.valCounter==(k.valArray[i].size-1))\{\
+					if(k.checkTouch(i))\{\
+						("on: "++i.asString++" val: "++k.valArray[i][0]).postln;\
+						\cf5 g.inKnobs[i].valueAction=k.p.analog[i].value/460;\cf0 \
+					\
+					\}	\
+					\{\
+				//		"0".post; "   ".post;\
+					\}\
+				\};\
+				\
+				\
+			\};\
+//			\cf5 0.05.wait;\cf0 \
+\cf5 //			"".postln;\cf0 \
+		\}\
+\};\
+\
+\
+\
+Routine\{1.do\{\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 \
+\pard\pardeftab720
+\cf0 k.d = \cf2 SerialPort\cf0 .devices[3]; \cf5 //select correct index for serial port\cf0 \
+k.p = \cf2 SCPyduino\cf0 .new(k.d,57600);\
+4.wait;\
+k.p.analog[0].active_(1); \cf5 //activates polling for analog pin 0 on the microcontroller\cf0 \
+k.p.analog[1].active_(1); \cf5 //activates polling for analog pin 0 on the microcontroller\cf0 \
+k.p.analog[2].active_(1); \cf5 //activates polling for analog pin 0 on the microcontroller\cf0 \
+\
+\
+\cf2 AppClock\cf0 .play(k.a);\
+\
+\
+\}\};}

@@ -1,0 +1,166 @@
+//-------------------------
+//gui:
+w = Window.new("machinaMixer",Rect(0,0,450,700));
+g.window=w;
+w.onClose={
+	z.sampler
+};
+g.list=List.new;
+g.playButtons=List.new;
+
+g.space=( (g.window.view.bounds.width)/g.noLists );
+g.width=( (g.window.view.bounds.width)/g.noLists ) - (2*g.padding);
+
+2.do{|i|
+	b = Button(w,Rect(
+		g.padding+(g.space*i),
+		g.padding,
+		40,40));
+
+	b.states=[
+		[">",Color.white,Color.black],
+		["||",Color.white,Color.red]];
+
+	b.action={|button|
+		a.playButtons(button,i);
+	};
+
+
+	g.playButtons.add(b);
+
+	l = ListView(w,Rect(
+		g.padding+(g.space*i),
+		50,
+		g.width,
+		g.width-50)
+	);
+	l.action={|list| a.listView(list,i); };
+
+	l.items=v.samples;
+
+   g.list.add(l);
+};
+
+
+
+
+g.width= ( (g.window.view.bounds.width)*g.smallKnobSize )-g.padding;
+g.width.postln;
+g.volKnobs=List.new;
+
+g.moduleKnobs=List.new;
+
+g.moduleKnobs.add(Array.newClear(3));
+2.do{|i|
+	b=Knob(w,Rect(
+		g.padding
+		+		
+		(i*(g.window.view.bounds.width-(g.width)-(2*g.padding))),
+		200+(g.width/2),
+		g.width,g.width)
+	);	
+	b.value=0.5;
+	b.action={|knob| a.volumeKnob(knob,i);};
+	g.volKnobs.add(b);
+	
+	g.moduleKnobs[0][i*2]=b;
+
+	if(i==0) {
+	
+		b=Slider(w,Rect(
+			g.padding+g.width,
+			200+(g.width/2),
+			g.window.view.bounds.width-(2*g.width)-(g.padding*2),
+			50));
+		b.value=0.5;
+		b.action={|slider|a.slider(slider)};
+
+		g.slider=b;
+
+		g.moduleKnobs[0][1]=b;
+	};
+};
+
+
+g.width= ( (g.window.view.bounds.width)/(g.noModules-1) )-g.padding;
+(g.noModules-1).do{|i|
+
+
+g.subview = VLayoutView(w, Rect(g.width/2+(i*g.width),g.window.view.bounds.height/2.25,30,250) );
+
+g.moduleKnobs.add(
+	Array.fill( (g.noModules-1),
+	{ arg j;
+		Knob( g.subview, Rect(0,0,30,30) ).value_(0.5).action_({|knob| a.moduleKnob(knob,i,j) })
+
+	})
+);
+
+};
+
+
+g.selectSampler=List.new;
+
+//synthbuttons
+g.knobwidth= ( (g.window.view.bounds.width)/g.noKnobs ) - g.padding;
+g.width= ( (g.window.view.bounds.width)/2 ) - g.padding;
+2.do{|i|
+	b=Button(w,Rect(g.padding+(g.width*i),
+			g.window.view.bounds.height-(2*g.knobwidth),
+			g.width,
+			(0.2*g.knobwidth)));
+	b.states=[
+		["sampler"++i,Color.white,Color.black],
+		["sampler"++i,Color.white,Color.red]];
+
+	b.action={|button|
+		a.selectSampler(button,i);
+	};
+	b.value=(i+1)%2;
+
+	g.selectSampler.add(b);
+
+};
+
+
+g.width= ( (g.window.view.bounds.width)/g.noKnobs ) - g.padding;
+
+g.noKnobs.do{|i|
+	b=Knob(w,Rect(
+	g.padding+(i*(g.width+(g.padding/g.noKnobs))),
+	g.window.view.bounds.height-(1.75*g.width),
+	g.width,g.width));
+	b.value=0.5;
+	b.action={|knob|a.inKnob(knob,i)};
+};
+
+
+
+
+
+g.width= ( (w.view.bounds.width)/g.noButtons ) - g.padding;
+
+g.labels=["mixer","eq","fx","fx2"];
+g.moduleButtons=List.new;
+g.noButtons.do{|i|
+	b=Button(w,Rect(
+		g.padding+(i*(g.width+g.padding)),
+		g.window.view.bounds.height-g.width,
+		g.width,g.width)
+	);
+	b.states=[
+		[g.labels[i],Color.white,Color.black],
+		[g.labels[i],Color.white,Color.red]];
+
+	b.action={|button|
+		a.moduleButtons(i);
+	};
+
+	g.moduleButtons.add(b);
+};
+
+
+
+
+w.front;
+
