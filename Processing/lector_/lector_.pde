@@ -10,8 +10,8 @@ void setup()
   size(200, 200);
   println(Serial.list());  //list all the available serial ports
   //replace the 8 in the next line with your serial port number from the list above.  
-  String portName = Serial.list()[2]; //My device is using "port 8" on my laptop
-  myPort = new Serial(this, Serial.list()[2], 115200); //115200 is the data rate associated with this Bluetooth module
+  String portName = Serial.list()[6]; //My device is using "port 8" on my laptop
+  myPort = new Serial(this, Serial.list()[6], 115200); //115200 is the data rate associated with this Bluetooth module
 
 }
 
