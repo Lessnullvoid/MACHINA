@@ -1,4 +1,4 @@
-#N canvas 9 22 1009 703 12;
+#N canvas 9 -2 1009 703 12;
 #X obj 6 -29 inlet;
 #X obj 52 -29 inlet;
 #X obj 99 -29 inlet;
@@ -88,19 +88,19 @@
 #X text 321 84 step position;
 #X obj 562 106 r bar;
 #X obj 562 173 * 20;
-#X floatatom 562 250 5 0 0 0 - - -;
+#X floatatom 562 250 5 0 0;
 #X text 683 80 CURRENT INSTRUMENT;
 #X obj 562 207 + 0;
 #X text 258 209 adjust for current instrument channel;
 #X text 226 174 set to pattern start/20 slots per pattern;
 #X obj 794 40 * 4000;
 #X text 574 63 4000 means 200 bars per instrument;
-#X floatatom 794 14 5 0 0 0 - - -;
+#X floatatom 794 14 5 0 0;
 #X msg 629 88 bang;
 #X obj 562 139 int;
-#N canvas 0 22 863 652 playback 0;
+#N canvas 0 0 863 652 playback 0;
 #X obj 116 8 r beat;
-#X floatatom 116 39 5 0 0 0 - - -;
+#X floatatom 116 39 5 0 0;
 #X obj 18 236 select 0;
 #X text 34 9 PLAYBACK;
 #X obj 18 187 + 0;
@@ -234,7 +234,7 @@
 #X obj 820 595 tabread seq;
 #X obj 850 -27 inlet;
 #X obj 869 201 * 20;
-#X floatatom 869 259 5 0 0 0 - - -;
+#X floatatom 869 259 5 0 0;
 #X obj 869 230 + 0;
 #N canvas 94 91 1009 703 copypaste 0;
 #X obj 257 12 inlet;

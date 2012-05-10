@@ -1,7 +1,7 @@
-#N canvas 102 22 1009 703 12;
-#X obj 186 109 bng 25 250 50 0 empty empty play 30 10 0 8 -159808 -241291
+#N canvas 140 97 1009 703 12;
+#X obj 186 109 bng 25 250 50 0 empty empty play 30 10 0 8 -258699 -241291
 -1;
-#X obj 216 132 bng 25 250 50 0 empty empty load 30 10 0 8 -232576 -241291
+#X obj 216 132 bng 25 250 50 0 empty empty load 30 10 0 8 -258699 -241291
 -1;
 #X symbolatom 268 651 50 0 0 0 - - -;
 #X obj 186 86 r channel1;
@@ -21,9 +21,9 @@
 #X obj 268 621 r lastload;
 #X msg 63 100 1;
 #X msg 25 100 440;
-#X obj 311 374 bng 25 250 50 0 empty empty play 30 10 0 8 -159808 -241291
+#X obj 311 374 bng 25 250 50 0 empty empty play 30 10 0 8 -258699 -241291
 -1;
-#X obj 341 397 bng 25 250 50 0 empty empty load 30 10 0 8 -232576 -241291
+#X obj 341 397 bng 25 250 50 0 empty empty load 30 10 0 8 -258699 -241291
 -1;
 #X obj 224 485 outlet~;
 #X obj 188 292 r sampleinit;
@@ -40,9 +40,9 @@
 #X msg 150 365 440;
 #X obj 224 457 sampleplayer 2;
 #X obj 311 351 r channel2;
-#X obj 521 149 bng 25 250 50 0 empty empty play 30 10 0 8 -159808 -241291
+#X obj 521 149 bng 25 250 50 0 empty empty play 30 10 0 8 -258699 -241291
 -1;
-#X obj 551 172 bng 25 250 50 0 empty empty load 30 10 0 8 -232576 -241291
+#X obj 551 172 bng 25 250 50 0 empty empty load 30 10 0 8 -258699 -241291
 -1;
 #X obj 434 260 outlet~;
 #X obj 398 67 r sampleinit;
@@ -59,9 +59,9 @@
 #X msg 360 140 440;
 #X obj 434 232 sampleplayer 3;
 #X obj 521 126 r channel3;
-#X obj 675 386 bng 25 250 50 0 empty empty play 30 10 0 8 -159808 -241291
+#X obj 675 386 bng 25 250 50 0 empty empty play 30 10 0 8 -258699 -241291
 -1;
-#X obj 705 409 bng 25 250 50 0 empty empty load 30 10 0 8 -232576 -241291
+#X obj 705 409 bng 25 250 50 0 empty empty load 30 10 0 8 -258699 -241291
 -1;
 #X obj 588 497 outlet~;
 #X obj 552 304 r sampleinit;
@@ -78,9 +78,9 @@
 #X msg 514 377 440;
 #X obj 675 363 r channel4;
 #X obj 588 469 sampleplayer 4;
-#X obj 788 91 bng 25 250 50 0 empty empty play 30 10 0 8 -159808 -241291
+#X obj 788 91 bng 25 250 50 0 empty empty play 30 10 0 8 -258699 -241291
 -1;
-#X obj 818 114 bng 25 250 50 0 empty empty load 30 10 0 8 -232576 -241291
+#X obj 818 114 bng 25 250 50 0 empty empty load 30 10 0 8 -258699 -241291
 -1;
 #X obj 701 202 outlet~;
 #X obj 665 9 r sampleinit;
